@@ -1480,15 +1480,17 @@ em[data-i18n].i18n-active{display:inline}
 </div>
 
 <script>
+// ── INTERSECTION OBSERVER (muss vor show() stehen) ──
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
+},{threshold:0.05});
+
 function show(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
   setTimeout(()=>{
-    const page = document.getElementById(id);
-    page.querySelectorAll('.rev').forEach(el=>{
-      obs.observe(el);
-    });
+    document.getElementById(id).querySelectorAll('.rev').forEach(el=>obs.observe(el));
   },50);
   return false;
 }
@@ -1517,10 +1519,6 @@ document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
 });
 
-// Intersection observer for .rev animations
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});
-},{threshold:0.05});
 // Only observe .rev elements on the active page initially
 document.querySelectorAll('.page.active .rev').forEach(el=>obs.observe(el));
 

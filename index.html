@@ -34,13 +34,14 @@ body{font-family:var(--serif);background:var(--bg);color:var(--tx);overflow-x:hi
 .page{display:none}.page.active{display:block}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;background:linear-gradient(to bottom,rgba(10,9,6,.95) 0%,transparent 100%);gap:40px}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:36px 64px;background:linear-gradient(to bottom,rgba(10,9,6,.95) 0%,transparent 100%);gap:40px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none;flex-shrink:0}
 .logo-mark{width:32px;height:32px;position:relative;flex-shrink:0}
 .logo-mark svg{width:32px;height:32px}
 .logo-text{font-family:var(--mono);font-size:11px;font-weight:300;letter-spacing:.4em;text-transform:uppercase;color:var(--tx);white-space:nowrap}
 .logo-text b{color:var(--g);font-weight:300}
 .nav-r{display:flex;align-items:center;gap:28px;flex-shrink:0}
+/* Desktop: overlay nav never blocks */@media(min-width:901px){.nav-overlay{display:none!important;pointer-events:none!important;visibility:hidden!important}}
 .nav-r a{font-family:var(--mono);font-size:9px;font-weight:300;letter-spacing:.25em;text-transform:uppercase;color:var(--mu);text-decoration:none;cursor:none;transition:color .3s;white-space:nowrap}
 .nav-r a:hover{color:var(--tx)}
 
@@ -298,8 +299,8 @@ footer{border-top:1px solid var(--bd);padding:40px 64px;display:flex;flex-direct
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
-.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,9,6,.98);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:40px}
-.nav-overlay.open{display:flex}
+.nav-overlay{display:none;position:fixed;inset:0;background:rgba(10,9,6,.98);z-index:300;flex-direction:column;align-items:center;justify-content:center;gap:40px;pointer-events:none;visibility:hidden}
+.nav-overlay.open{display:flex;pointer-events:auto;visibility:visible}
 .nav-overlay a{font-family:var(--mono);font-size:12px;font-weight:300;letter-spacing:.4em;text-transform:uppercase;color:var(--tx);text-decoration:none;transition:color .3s}
 .nav-overlay .lang-switcher{margin-left:0;padding-left:0;border-left:none;margin-top:20px}
 .close-nav{position:absolute;top:28px;right:28px;font-family:var(--mono);font-size:9px;letter-spacing:.3em;color:var(--mu);background:none;border:none;cursor:pointer;text-transform:uppercase}
